@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  namespace :api do
+    match "/send_data", to: 'test#send_data', via: [:post, :options]
+    match "/recieve_get_json", to: 'test#recieve_get_json', via: [:get, :options]
+    match "/recieve_get_blob", to: 'test#recieve_get_blob', via: [:get, :options]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
