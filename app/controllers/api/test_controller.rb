@@ -8,7 +8,7 @@ class Api::TestController < Api::BaseController
     elsif params[:step] == "1b"
       callback_response = get_blob(server_url)
     elsif params[:step] == "2"
-      callback_response = post_json
+      callback_response = post_json(server_url)
     end
     render json: callback_response
     # render json: {status: "ok"}
@@ -24,11 +24,20 @@ class Api::TestController < Api::BaseController
     return response.body
   end
 
+  def post_json(server_url)
+    response = HTTParty.post(server_url)
+    return response.body
+  end
+
   def recieve_get_json
     render json: { accepted: "get_json" }
   end
 
   def recieve_get_blob
     render json: { accepted: "get_blob" }
+  end
+
+  def recieve_post_json
+    render json: { accepted: "post_json" }
   end
 end
